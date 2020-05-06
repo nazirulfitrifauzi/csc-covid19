@@ -5,6 +5,8 @@ namespace App\Http\Controllers\TempCheck;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Temp;
+use Carbon\Carbon;
+use DB;
 
 class TempCheckController extends Controller
 {
@@ -36,12 +38,32 @@ class TempCheckController extends Controller
      */
     public function store(Request $request)
     {
+
+     $checker = Carbon::today();
+
+
+         $user =Temp::where('name',$request->name)->whereDate('created_at', $checker)->first();
+         
+
+        
+            
+        if(empty($user)) { 
+
+
         Temp::create([
            'name'            =>  $request->get('name'),
            'temperature'     =>  $request->get('temperature'), 
         ]);
+         
+       
+        return redirect()->back()->with('success','Done! Your temperature has been recorded');
+       }
 
-         return redirect()->back()->with('success','Successfully submitted the form');
+       else{
+
+          return redirect()->back()->with('failed','Your temperature has been recorded for today');
+       }
+         
     }
 
     /**
@@ -88,4 +110,5 @@ class TempCheckController extends Controller
     {
         //
     }
+       
 }
