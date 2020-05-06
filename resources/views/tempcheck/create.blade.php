@@ -1,7 +1,7 @@
 <div class="w-full max-w-lg">
 	{{-- alert --}}
 	@if(session()->has('success'))
-	<div class="block bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md mb-6 fadein"
+	<div class="block bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md mb-6 "
 		role="alert" id="successarlert">
 		<div class="flex">
 			<div class="py-1">
@@ -17,7 +17,7 @@
 
 	{{-- failed alert --}}
 	@if(session()->has('failed'))
-	<div class="block bg-red-100 border-t-4 border-red-500 rounded-b text-red-900 px-4 py-3 shadow-md mb-6 fadein"
+	<div class="block bg-red-100 border-t-4 border-red-500 rounded-b text-red-900 px-4 py-3 shadow-md mb-6 "
 		role="alert" id="successarlert">
 		<div class="flex">
 			<div class="py-1">
@@ -92,9 +92,9 @@
 // });
 
 
-// $(document).ready(function(){
-//     setTimeout(function(){ $("#successarlert").hide()  }, 3000);
-// });
+$(document).ready(function(){
+    setTimeout(function(){ $("#successarlert").hide()  }, 3000);
+});
 
 
 </script>
