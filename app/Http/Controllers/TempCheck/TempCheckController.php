@@ -17,7 +17,7 @@ class TempCheckController extends Controller
      */
     public function index()
     {
-        //
+        return view('tempcheck.create');
     }
 
     /**
@@ -54,9 +54,14 @@ class TempCheckController extends Controller
            'name'            =>  $request->get('name'),
            'temperature'     =>  $request->get('temperature'), 
         ]);
-         
+
+         $checktemp = $request->temperature;
+         $checkname = $request->name;
+
+         // dd($checktemp);
        
-        return redirect()->back()->with('success','Done! Your temperature has been recorded');
+        return redirect()->back()->with('success','Done! Your temperature has been recorded')
+        ->with('checktemp',$checktemp )->with('checkname',$checkname );
        }
 
        else{

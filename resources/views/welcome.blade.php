@@ -12,7 +12,23 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('datatablecss/datatable.css') }}" rel="stylesheet">
+
+
+    <link href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel = "stylesheet">
+
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
+   <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+
+   <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+
+
+{{-- 
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" /> --}}
 </head>
 
 <body class="bg-gray-100 h-screen antialiased leading-none">
@@ -27,11 +43,11 @@
                                 <img class="h-10 w-auto" src="{{ asset('img/csc_blue.png') }}"/>
                             </div>
                             <div class="hidden sm:ml-6 sm:flex">
-                                <a href="#"
+                                <a href="{{ route('TempCheck.index')}}"
                                     class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
                                     Temperature Check
                                 </a>
-                                <a href="#"
+                                <a href="{{ route('Report.index')}}" 
                                     class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                     Reporting
                                 </a>
@@ -41,29 +57,12 @@
                 </div>
             </nav>
 
-            <div class="py-10">
-                <header>
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <h1 class="text-3xl font-bold leading-tight text-gray-900">
-                           Temperature Check
-                        </h1>
-                    </div>
-                </header>
-                <main>
-                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                        <!-- Replace with your content -->
-                        <div class="px-4 py-8 sm:px-0">
-                            <div>
-                                @include('tempcheck.create')
-                            </div>
-                        </div>
-                        <!-- /End replace -->
-                    </div>
-                </main>
-            </div>
+             @yield('content')
+
         </div>
         <!-- end content -->
     </div>
 </body>
 
 </html>
+
