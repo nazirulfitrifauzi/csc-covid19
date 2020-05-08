@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\TempCheck;
+namespace App\Http\Controllers\Report;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,16 +8,21 @@ use App\Temp;
 use Carbon\Carbon;
 use DB;
 
-class TempCheckController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('tempcheck.create');
+         
+        $mytime = Carbon::now();
+
+        $recordstaff  =Temp::whereDate('created_at','=',$mytime)->get();
+      
+        return view ('report.index', compact('recordstaff'));
     }
 
     /**
@@ -27,7 +32,7 @@ class TempCheckController extends Controller
      */
     public function create()
     {
-         
+        //
     }
 
     /**
@@ -37,38 +42,39 @@ class TempCheckController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
-
-     $checker = Carbon::today();
-
-
-         $user =Temp::where('name',$request->name)->whereDate('created_at', $checker)->first();
+           if(is_null($request->from_date))
+        {
          
 
-        
-            
-        if(empty($user)) { 
+            $mytime = Carbon::now();
 
+            $recordstaff  = Temp::whereDate('created_at','=',$mytime)->get();
 
-        Temp::create([
-           'name'            =>  $request->get('name'),
-           'temperature'     =>  $request->get('temperature'), 
-        ]);
-
-         $checktemp = $request->temperature;
-         $checkname = $request->name;
-
-         // dd($checktemp);
+             return view ('report.index', compact('recordstaff'));  
        
-        return redirect()->back()->with('success','Done! Your temperature has been recorded')
-        ->with('checktemp',$checktemp )->with('checkname',$checkname );
-       }
 
-       else{
+        }
 
-          return redirect()->back()->with('failed','Your temperature has been recorded for today');
-       }
-         
+          else
+
+        {
+        
+
+            $fromdate = Carbon::parse($request->from_date);
+            
+
+            $todate = Carbon::parse($request->to_date)->addDays(1);
+
+
+
+            $recordstaff  = Temp::whereBetween('created_at',array($fromdate, $todate))->get();
+          
+            // dd($recordstaff);
+            return view ('report.index', compact('recordstaff','fromdate','todate'));     
+
+        }
     }
 
     /**
@@ -115,5 +121,4 @@ class TempCheckController extends Controller
     {
         //
     }
-       
 }
