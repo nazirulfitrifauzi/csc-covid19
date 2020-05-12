@@ -68,13 +68,13 @@
 								<option>Nazirul Fitri Bin Fauzi</option>
 								<option>Muhamad Irfan Bin Hashim</option>
 								<option>Muhammad Anis Bin Abdul Ghani</option>
-								<option>Norzafeera Amira Binti Abu Samah</option>
 								<option>Nur Izzah Syahira Binti Razali</option>
 								<option>Muhammad Safwan Bin Azman</option>
 								<option>Fadhilrul Hafidz Bin Saifuddin</option>
 								<option>Syed Nasir Bin Syed Abd Jalil</option>
 								<option>Md Sidek Bi Abd Hamid</option>
 								<option>Ahmad Zuwari Bin Muhammad</option>
+								<option>Alif Hakimi Lokman</option>
 								<option>Zarshaid</option>
 								<option>Wati Setiawati</option>
 							</select>
