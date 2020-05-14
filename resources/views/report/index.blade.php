@@ -1,5 +1,23 @@
  @extends('welcome')
+<style>
+  .dotgreen{
+      height: 12px;
+      width: 12px;
+      background-color: #228B22;
+      border-radius: 50%;
+      display: inline-block;
 
+  }
+    .dotred{
+        height: 12px;
+        width: 12px;
+        background-color: #B22222;
+        border-radius: 50%;
+        display: inline-block;
+
+  }
+
+</style>
  @section('content')
 {{-- reporting --}}
 <div class="py-10">
@@ -16,31 +34,38 @@
       <div class="px-4 py-8 sm:px-0">
         <div>
           <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-
-
-        
-          <form method="POST"  action="{{url('Report')}}">
+            
+            <form method="POST"  action="{{url('Report')}}" >
               <input type="hidden" name="_token" value="{{ Session::token() }}">
-            <div class="pb-5">
-              <p class="pb-2">Enter Date:</p> 
-              <input type = "text" name="from_date" id="from_date"  class="shadow appearance-none border rounded w-30 py-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline datepicker"  readonly  placeholder="From Date"  
+              <p class="pb-2">Enter Date:</p>
+              <input type = "text" name="from_date" id="from_date"  class="shadow appearance-none border rounded w-30 py-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline datepicker"  readonly  placeholder="From Date"
               >
-               
-
-              <input type = "text"  name="to_date" id="to_date"  class="shadow appearance-none border rounded w-30 py-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline datepicker"  readonly  placeholder="To Date" 
+              
+              <input type = "text"  name="to_date" id="to_date"  class="shadow appearance-none border rounded w-30 py-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline datepicker"  readonly  placeholder="To Date"
               >
-
-              <button type="submit" name="filter" id="filter"
-                class="bg-blue-500 hover:bg-blue-700 text-white 
-                font-bold py-2 px-4 rounded">Filter
+              <button  type="submit" name="filter" id="filter"
+              class="bg-blue-500 hover:bg-blue-700 text-white
+              font-bold py-2 px-4 rounded">Filter
               </button>
 
-          
+              <button type="button" name="refresh" id="refresh" 
+              class="bg-blue-500 hover:bg-blue-700 text-white
+               font-bold py-2 px-4 rounded">Refresh</button>
+
+
+              
+            </form>
+            <div class="pb-5">
+              <div class="flex-row">
+                <div class="pt-4 pb-2">
+                  <div class="dotgreen"></div>
+                  <span class="pl-1 pr-2 font-medium text-gray-700">Healthy</span>
+                  <div class="dotred"></div>
+                  <span class="pl-1 font-medium text-gray-700">Fever</span>
+                </div>
+              </div>
             </div>
-          </form>
-         
-
-
+            
             <table id="dataTable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
               <thead>
                 <tr>
@@ -53,7 +78,14 @@
                 @foreach($recordstaff as $recordstaffinfo)
                 <tr>
                   <td>{{$recordstaffinfo->name}}</td>
-                  <td>{{number_format($recordstaffinfo->temperature,2,'.','')}}</td>
+                  <td>{{number_format($recordstaffinfo->temperature,2,'.','')}}
+                    @if($recordstaffinfo->temperature <= 36.9)
+                        <span class="dotgreen"></span>
+                    @elseif($recordstaffinfo->temperature >=36.9)
+                        <span class="dotred"></span>
+                    @endif
+                    
+                  </td>
                   <td>{{Carbon\Carbon::parse($recordstaffinfo->created_at)->format("d/m/y")}}</td>
                   
                 </tr>
@@ -91,10 +123,10 @@
 <script >
     $(document).ready(function() {
     $('#dataTable').dataTable( {
-        dom: "<'row'<''l><'col-sm-12 col-md-6'f>>" +
-              "<'row'<'col-sm-12'tr>>" +
-              "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>" +
-              "<'row'<'col-sm-12 mt-20 text-blue-500'B>>",
+        dom: "<'row'<l> <f>>" +
+              "<'row'<tr>>" +
+              "<'row'<i><p>>" +
+              "<'row'<'mt-20 text-blue-500'B>>",
         buttons: [
             'excel','print','pdf'
         ]
@@ -106,10 +138,6 @@
             $( ".datepicker" ).datepicker({
                 // dateFormat: 'dd/mm/yy' 
                });
-         
-          
-           
-           
          });
 
           
@@ -130,6 +158,43 @@
       }
      });
 
+       $('#refresh').click(function(){
+          $('#from_date').val('');
+          $('#to_date').val('');
+       });
+
     });
 </script>
+
+
+<script>
+  
+    window.onload = function() {
+
+        
+        if (sessionStorage.getItem('name') == "name") {
+            return;
+        }
+
+       
+        var from_date = sessionStorage.getItem('from_date');
+        if (from_date !== null) $('#from_date').val(from_date);
+
+        var to_date = sessionStorage.getItem('to_date');
+        if (to_date !== null) $('#to_date').val(to_date);
+
+    }
+
+  
+    window.onbeforeunload = function() {
+        sessionStorage.setItem("from_date", $('#from_date').val());
+        sessionStorage.setItem("to_date", $('#to_date').val());
+
+    }
+</script>
+
+
+
+
+
 

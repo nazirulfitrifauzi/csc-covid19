@@ -72,7 +72,11 @@ class ReportController extends Controller
             $recordstaff  = Temp::whereBetween('created_at',array($fromdate, $todate))->get();
           
             // dd($recordstaff);
-            return view ('report.index', compact('recordstaff','fromdate','todate'));     
+            return view ('report.index', compact('recordstaff','fromdate','todate'));   
+
+            
+
+            
 
         }
     }
