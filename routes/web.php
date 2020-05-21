@@ -20,3 +20,16 @@ Route::get('/', function () {
 Route::resource('TempCheck','TempCheck\TempCheckController');
 
 Route::resource('Report','Report\ReportController');
+
+Route::resource('DeclarationForm','Form\FormController');
+
+Route::resource('Employee','Form\EmployeeController');
+
+Route::resource('Visitor','Form\VisitorController');
+
+Route::resource('List','Form\ListController');
+
+Route::resource('EmployeeQuestList','Quest\EmployeeQuestController');
+
+Route::resource('VisitoreQuestList','Quest\VisitorQuestController');
+
