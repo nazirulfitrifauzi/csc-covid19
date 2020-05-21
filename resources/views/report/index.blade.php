@@ -20,15 +20,21 @@
 </style>
  @section('content')
 {{-- reporting --}}
-<div class="py-10">
-  <header>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold leading-tight text-gray-900">
+<!--Header-->
+<div class="w-full m-0 p-0 bg-cover bg-bottom bg-indigo-900" style=" height: 45vh; max-height:360px;">
+  <div class="container max-w-4xl mx-auto pt-16 md:pt-18 text-center break-normal">
+    <!--Title-->
+    <p class="text-white font-extrabold text-3xl md:text-5xl">
       Reporting
-      </h1>
-    </div>
-  </header>
-  <main>
+    </p>
+    <p class="text-xl md:text-2xl text-gray-500 pt-2"></p>
+  </div>
+</div>
+
+<!--Container-->
+<div class="container px-4 md:px-0 max-w-full mx-auto -mt-32">
+  
+  <div class="mx-0 sm:mx-6">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <!-- Replace with your content -->
       <div class="px-4 py-8 sm:px-0">
@@ -44,12 +50,12 @@
               <input type = "text"  name="to_date" id="to_date"  class="shadow appearance-none border rounded w-30 py-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline datepicker"  readonly  placeholder="To Date"
               >
               <button  type="submit" name="filter" id="filter"
-              class="bg-blue-500 hover:bg-blue-700 text-white
+              class="bg-indigo-500 hover:bg-indigo-700 text-white
               font-bold py-2 px-4 rounded">Filter
               </button>
 
               <button type="button" name="refresh" id="refresh" 
-              class="bg-blue-500 hover:bg-blue-700 text-white
+              class="bg-indigo-500 hover:bg-indigo-700 text-white
                font-bold py-2 px-4 rounded">Refresh</button>
 
 
@@ -70,7 +76,7 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Tempurature</th>
+                  <th>Temperature</th>
                   <th>Date</th>
                 </tr>
               </thead>
@@ -98,7 +104,7 @@
       </div>
       <!-- /End replace -->
     </div>
-  </main>
+  </div>
 </div>
 @endsection
 
@@ -126,7 +132,7 @@
         dom: "<'row'<l> <f>>" +
               "<'row'<tr>>" +
               "<'row'<i><p>>" +
-              "<'row'<'mt-20 text-blue-500'B>>",
+              "<'row'<'mt-20 text-indigo-500'B>>",
         buttons: [
             'excel','print','pdf'
         ]
