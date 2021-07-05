@@ -32,35 +32,48 @@
         <div class="flex flex-col">
             <!-- Content -->
             <div class="min-h-screen">
-                <nav class="bg-white shadow-sm">
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div class="flex justify-between h-16">
-                            <div class="flex">
-                                <div class="flex-shrink-0 flex items-center">
-                                    <img class="h-10 w-auto" src="{{ asset('img/csc_blue.png') }}"/>
-                                </div>
-                                <div class=" sm:ml-6 sm:flex">
-                                    <a href="{{ route('TempCheck.index')}}"
-                                        class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
-                                        Temperature Check
-                                    </a>
-                                    <a href="{{ route('Report.index')}}"
-                                        class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                        Reporting
-                                    </a>
-                                    <a href="{{ route('DeclarationForm.create')}}"
-                                        class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                        Declaration Form
-                                    </a>
-
-                                       <a href="{{ route('List.index')}}"
-                                        class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                        List Employee & Visitor
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg  bg-indigo-900">
+                  <div class="container px-4  flex flex-wrap items-center justify-between">
+                    <div class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
+                      <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white" href="#pablo">
+                        CSC
+                      </a>
+                      <button class="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button" onclick="toggleNavbar('example-collapse-navbar')">
+                        <i class="fas fa-bars"></i>
+                      </button>
                     </div>
+                    <div class="lg:flex flex-grow items-center hidden " id="example-collapse-navbar">
+                      <ul class="flex flex-col lg:flex-row list-none">
+                        <li class="nav-item">
+                          <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="{{ route('TempCheck.index')}}">
+                            <i class="fas fa-temperature-high text-lg leading-lg text-white opacity-75"></i><span class="ml-2">Temperature Check
+                            </span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="{{ route('Report.index')}}">
+                            <i class="fas fa-clipboard-list text-lg leading-lg text-white opacity-75"></i><span class="ml-2">
+                                Reporting
+                            </span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="{{ route('DeclarationForm.create')}}">
+                            <i class="fab fa-wpforms text-lg leading-lg text-white opacity-75"></i><span class="ml-2">
+                                Declaration Form
+                            </span>
+                          </a>
+                        </li>
+                         <li class="nav-item">
+                          <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="{{ route('List.index')}}">
+                            <i class="fas fa-clipboard-list text-lg leading-lg text-white opacity-75"></i><span class="ml-2">
+                                List Employee & Visitor
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </nav>
                 @yield('content')
             </div>
@@ -75,3 +88,10 @@
         </div>
     </body>
 </html>
+
+<script>
+  function toggleNavbar(collapseID){
+    document.getElementById(collapseID).classList.toggle("hidden");
+    document.getElementById(collapseID).classList.toggle("flex");
+  }
+</script>
