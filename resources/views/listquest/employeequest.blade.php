@@ -42,7 +42,7 @@ margin-bottom: 0px !important;
 						<div class=" flex justify-end ">
 							<button class="font-medium text-sm flex items-center py-1 px-2 text-white mt-4 mr-2 flex
 							rounded-md mb-4 bg-indigo-500 hover:bg-indigo-700"  
-							 onclick="window.location.href = '{{url('EmployeeQuestList')}}';">
+							onclick="window.location.href = '{{url('EmployeeQuestList')}}';">
 							<i class="fas fa-undo-alt text-sm mr-2" aria-hidden="true"></i> Back to List
 							</button>
 						</div>

@@ -64,7 +64,7 @@
                             </span>
                           </a>
                         </li>
-                         <li class="nav-item">
+                        <li class="nav-item">
                           <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="{{ route('List.index')}}">
                             <i class="fas fa-clipboard-list text-lg leading-lg text-white opacity-75"></i><span class="ml-2">
                                 List Employee & Visitor
