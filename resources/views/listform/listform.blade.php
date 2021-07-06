@@ -30,7 +30,7 @@
             <!--Lead Card-->
             <div class="flex  bg-white rounded overflow-hidden shadow-lg" >
                 <a  class="flex flex-wrap no-underline hover:no-underline" style="width: 100%">
-                    <div class="lg:w-2/4 md:w-2/3 rounded-t lg picnone" >
+                    <div class="lg:w-2/4 md:w-2/3 rounded-t lg hidden lg:block " >
                         <img src="{{ asset('img/covid19bg.jpg') }}" class="h-full w-full shadow">
                     </div>
                     <div class="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
